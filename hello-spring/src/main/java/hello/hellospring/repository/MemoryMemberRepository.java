@@ -1,7 +1,9 @@
 package hello.hellospring.repository;
 
 import hello.hellospring.domain.Member;
+import org.springframework.jdbc.datasource.DataSourceUtils;
 
+import java.sql.Connection;
 import java.util.*;
 public class MemoryMemberRepository implements MemberRepository{
 
