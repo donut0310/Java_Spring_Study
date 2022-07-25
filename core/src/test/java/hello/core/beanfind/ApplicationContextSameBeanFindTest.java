@@ -47,7 +47,7 @@ public class ApplicationContextSameBeanFindTest {
         System.out.println("beansOfType = " + beansOfType);
         assertThat(beansOfType.size()).isEqualTo(2);
     }
-    
+
     /**
      *테스트를 위한 임시 config 파일
      *외부 클래스 내에서만 사용하도록 static 선언
