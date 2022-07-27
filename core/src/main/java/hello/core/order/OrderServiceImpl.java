@@ -6,7 +6,11 @@ import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+
+@Component
 public class OrderServiceImpl implements OrderService{
     /**
      * 현재 클래스(MemberServiceImpl)의
@@ -29,6 +33,7 @@ public class OrderServiceImpl implements OrderService{
     private final DiscountPolicy discountPolicy;
     private final MemberRepository memberRepository;
 
+    @Autowired // 컴포넌트 스캔 사용 시 의존관계 자동 주입
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;

@@ -1,5 +1,9 @@
 package hello.core.member;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class MemberServiceImpl implements MemberService {
     /**
      * 현재 클래스(MemberServiceImpl)의
@@ -17,6 +21,8 @@ public class MemberServiceImpl implements MemberService {
      *  이를 DI, 의존관계 주입이라고 한다.
      */
     private final MemberRepository memberRepository;
+    
+    @Autowired // => 컴포넌트 스캔 사용 시 의존관계 자동 주입 => ac.getBean(MemberRepository.class)
     public MemberServiceImpl(MemberRepository memberRepository) {
         // 생성자 주입, AppConfig에서 관리
         this.memberRepository = memberRepository;
