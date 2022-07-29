@@ -1,5 +1,6 @@
 package hello.core.order;
 
+import hello.core.annotation.MainDiscountPolicy;
 import hello.core.discount.DiscountPolicy;
 import hello.core.discount.FixDiscountPolicy;
 import hello.core.discount.RateDiscountPolicy;
@@ -40,7 +41,7 @@ public class OrderServiceImpl implements OrderService{
 //    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
 //    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy rateDiscountPolicy) { // 1. 여러 빈이 조회될 때, 필드 명으로 빈 이름 설정하여 해결
 //    public OrderServiceImpl(MemberRepository memberRepository, @Qualifier("mainDiscountPolicy") DiscountPolicy discountPolicy) { // 2. 여러 빈이 조회될 때, @Qualifier로  해결
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+    public OrderServiceImpl(MemberRepository memberRepository, @MainDiscountPolicy DiscountPolicy discountPolicy) { // 커스텀 애노테이션
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
 //        this.discountPolicy = rateDiscountPolicy; 1.
