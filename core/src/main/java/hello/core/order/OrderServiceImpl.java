@@ -6,11 +6,14 @@ import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 
 @Component
+//@RequiredArgsConstructor // final이 붙은 필드의 생성자를 만들어주는 lombok 라이브러리
 public class OrderServiceImpl implements OrderService{
     /**
      * 현재 클래스(MemberServiceImpl)의
@@ -33,10 +36,14 @@ public class OrderServiceImpl implements OrderService{
     private final DiscountPolicy discountPolicy;
     private final MemberRepository memberRepository;
 
-    @Autowired // 컴포넌트 스캔 사용 시 의존관계 자동 주입
+    @Autowired // 컴포넌트 스캔 사용 시 의존관계 자동 주입, 생성자가 딱 1개라면 생략 가능
+//    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+//    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy rateDiscountPolicy) { // 1. 여러 빈이 조회될 때, 필드 명으로 빈 이름 설정하여 해결
+//    public OrderServiceImpl(MemberRepository memberRepository, @Qualifier("mainDiscountPolicy") DiscountPolicy discountPolicy) { // 2. 여러 빈이 조회될 때, @Qualifier로  해결
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
+//        this.discountPolicy = rateDiscountPolicy; 1.
     }
 
     @Override
